@@ -7,7 +7,7 @@ Get the following stats from an RCGroups (http://www.rcgroups.com/forums/member.
 3. Attachments
 4. Views
 
-##Dependancies
+##Dependencies
 
 Needs CURL
 
