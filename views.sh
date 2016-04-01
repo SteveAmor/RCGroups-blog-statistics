@@ -18,7 +18,7 @@ more pages.txt | grep "<title>" | sed 's/<title>//g' | awk 'BEGIN { FS = "-" } ;
 pages=$(more pages.txt | grep '<title>' | awk 'BEGIN { FS = "-" } ; { print $2 }' | sed 's/Page//' | sed 's/ //' | awk '{ pages += $1 } END { printf pages }')
 
 curl -silent "http://www.rcgroups.com/forums/member.php?u=$1&page=1" > "dump.txt"
-for ((c=2; c<(pages+1); c++))
+for ((c=2; c<pages+1; c++))
 do
 curl -silent "http://www.rcgroups.com/forums/member.php?u=$1&page=$c" >> "dump.txt"
 done 
