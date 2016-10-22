@@ -8,7 +8,7 @@ then
 	exit 0
 fi
 
-curl -silent "http://www.rcgroups.com/forums/member.php?u=$1&page=10000" > "pages.txt"
+curl -silent "https://www.rcgroups.com/forums/member.php?u=$1&page=10000" > "pages.txt"
 echo ""
 echo "RC Groups User's Blog Stats"
 echo ""
@@ -17,10 +17,10 @@ echo "User $1"
 more pages.txt | grep "<title>" | sed 's/<title>//g' | awk 'BEGIN { FS = "-" } ; { print $1 }'
 pages=$(more pages.txt | grep '<title>' | awk 'BEGIN { FS = "-" } ; { print $2 }' | sed 's/Page//' | sed 's/ //' | awk '{ pages += $1 } END { printf pages }')
 
-curl -silent "http://www.rcgroups.com/forums/member.php?u=$1&page=1" > "dump.txt"
+curl -silent "https://www.rcgroups.com/forums/member.php?u=$1&page=1" > "dump.txt"
 for ((c=2; c<pages+1; c++))
 do
-curl -silent "http://www.rcgroups.com/forums/member.php?u=$1&page=$c" >> "dump.txt"
+curl -silent "https://www.rcgroups.com/forums/member.php?u=$1&page=$c" >> "dump.txt"
 done 
 
 posts=$(awk '$1 ~ /<div class="blogPost"/ {++posts} END {printf posts}' FS=: dump.txt)
